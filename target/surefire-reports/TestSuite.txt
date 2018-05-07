@@ -1,4 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.601 s - in TestSuite
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 2, Time elapsed: 0.962 s <<< FAILURE! - in TestSuite
+setup(testcases.SampleTests)  Time elapsed: 0.435 s  <<< FAILURE!
+java.lang.NullPointerException
+

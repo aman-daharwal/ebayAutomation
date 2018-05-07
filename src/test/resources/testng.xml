@@ -1,9 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1" >
+
     <test name="test1" >
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name = "testcases.SampleTests"/>
+        </classes>
     </test>
 
-    <test name="test2">
-    </test>
 </suite>
