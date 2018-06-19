@@ -1,5 +1,6 @@
 package testcases;
 
+import commons.Log;
 import commons.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,8 @@ public class SampleTests extends TestBase
     @Test
     public void test1()
     {
+        Log.startTestCase("Test 1");
+
         //WebElement element = driver.findElement(By.xpath("//input[@name='q']"));
         WebElement element = driver.findElement(By.xpath("//*[@id='gh-ac']"));
 
@@ -19,5 +22,7 @@ public class SampleTests extends TestBase
 
         WebElement elemnet2 = driver.findElement(By.xpath("//*[@id='gh-btn']"));
         elemnet2.submit();
+
+        Log.endTestCase("End");
     }
 }
