@@ -1,6 +1,7 @@
 package commons;
 
 
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,9 +22,13 @@ public class TestBase {
     @BeforeTest
     public void setup(String browser) {
 
+        DOMConfigurator.configure("src\\test\\resources\\logger.xml");
+
         initialiazeBrowser(browser, getValueFromTestData(browser+"Path")); /// Initiating Browser drivers
 
         driver.manage().window().maximize();
+
+        Log.info("Hitting URL :"+getValueFromTestData("baseUrl"));
         driver.get(getValueFromTestData("baseUrl"));
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
         driver.manage().timeouts().pageLoadTimeout(50000, TimeUnit.MILLISECONDS);
@@ -31,10 +36,11 @@ public class TestBase {
     }
 
     public String getValueFromTestData(String key) {
+        Log.info("Getting Value from Test Data file for Key "+key);
         File testDatafile = new File(ProjectData.testDataFile);
         testDatafile.mkdirs();
 
-        System.out.println("Test Data filepath = "+testDatafile.getAbsolutePath());
+        Log.debug("Test Data filepath = "+testDatafile.getAbsolutePath());
 
         FileInputStream fileInput = null;
         try {
@@ -55,18 +61,22 @@ public class TestBase {
     }
 
     public void initialiazeBrowser(String browser, String driverPath) {
-        System.out.println("Browser  Name = "+browser);
+        Log.info("Browser  Name = "+browser);
         if (browser.equalsIgnoreCase("firefox")) {
+            Log.info("Setting System properties for firefox driver");
             System.setProperty("webdriver.gecko.driver", ProjectData.projectPath + driverPath);
             driver = new FirefoxDriver();
         } else if (browser.equalsIgnoreCase("chrome")) {
+            Log.info("Setting System properties for chrome driver");
             System.setProperty("webdriver.chrome.driver", ProjectData.projectPath + driverPath);
             driver = new ChromeDriver();
         }
+        Log.info("Launching "+browser+" browser");
     }
 
     @AfterTest
     public void tearDown() {
+        Log.info("Killing driver and closing browser");
         if (driver != null)
             driver.quit();
     }
