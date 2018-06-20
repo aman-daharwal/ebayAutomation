@@ -1,12 +1,12 @@
 package screens;
 
-import commons.TestBase;
-import logger.Log;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+import services.logger.Log;
+import services.screenshot.Screenshot;
 
 import java.util.List;
 
@@ -47,6 +47,7 @@ public class EbayHomePage {
     {
         String searchedTitled = searchTitle.getText();
         Log.info("Item searched in ebay search box is '"+searchedTitled+"'");
+        Screenshot.TakeScreenshot("Item Searched "+searchedTitled);
         return searchedTitled.trim();
     }
 
