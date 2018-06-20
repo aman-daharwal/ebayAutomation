@@ -5,7 +5,10 @@ import logger.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class EbayHomePage {
 
@@ -23,6 +26,12 @@ public class EbayHomePage {
     @FindBy(id = "gh-btn")
     WebElement searchButton;
 
+    @FindBy(xpath = "//*[@class='bcrs']/span/b")
+    WebElement searchTitle;
+
+    @FindBy(xpath = "//*[@class='big-heros']/div")
+    List<WebElement> tiles;
+
     public void enterTextInSearchBox(String text)
     {
         Log.info("Entering text '"+text+"' inside Search box");
@@ -31,6 +40,20 @@ public class EbayHomePage {
 
     public void clickSearchButton() {
         Log.debug("Clicking search button");
-        searchBox.click();
+        searchButton.click();
+    }
+
+    public String getSearchedText()
+    {
+        String searchedTitled = searchTitle.getText();
+        Log.info("Item searched in ebay search box is '"+searchedTitled+"'");
+        return searchedTitled.trim();
+    }
+
+    public short GetNumberOfTiles()
+    {
+        short numberOfTiles = (short)tiles.size();
+        Log.info("Number of Tiles inside Home Page : "+numberOfTiles);
+        return numberOfTiles;
     }
 }
