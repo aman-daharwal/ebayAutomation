@@ -2,10 +2,16 @@
 
 <suite name="Suite1" verbose="1" >
 
-    <test name="test1" >
+    <test name="SearchKeywordInSearchBox" >
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name = "testcases.SampleTests"/>
+            <class name = "testcases.EbayHomeScreenTests"/>
+        </classes>
+    </test>
+    <test name="CalculateTilesInHomePage" >
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name = "testcases.EbayHomeScreenTests"/>
         </classes>
     </test>
 
