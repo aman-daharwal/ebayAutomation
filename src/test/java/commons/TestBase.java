@@ -1,6 +1,7 @@
 package commons;
 
 
+import logger.Log;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.io.*;
-import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +20,7 @@ public class TestBase {
 
     @Parameters({"browser"})
     @BeforeTest
-    public void setup(String browser) {
+    public void setup(@Optional("chrome") String browser) {
 
         DOMConfigurator.configure("src\\test\\resources\\logger.xml");
 
