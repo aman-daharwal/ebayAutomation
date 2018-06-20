@@ -1,4 +1,4 @@
-package logger;
+package services.logger;
 
 import org.apache.log4j.Logger;
 
@@ -20,7 +20,7 @@ public class Log {
     public static void endTestCase(String sTestCaseName) {
 
         Log.info(sTestCaseName+" Test case Finished.");
-        Log.trace("***************************************************************************************************");
+        Log.info("***************************************************************************************************");
     }
 
     // Need to create these methods, so that they can be called
