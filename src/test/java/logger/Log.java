@@ -19,7 +19,8 @@ public class Log {
 
     public static void endTestCase(String sTestCaseName) {
 
-        Log.info("Test case Finished.");
+        Log.info(sTestCaseName+" Test case Finished.");
+        Log.trace("***************************************************************************************************");
     }
 
     // Need to create these methods, so that they can be called
