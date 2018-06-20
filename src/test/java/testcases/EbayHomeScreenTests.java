@@ -1,13 +1,11 @@
 package testcases;
 
-import logger.Log;
 import commons.TestBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import screens.EbayHomePage;
+import services.logger.Log;
 
 import static java.lang.Short.*;
 
@@ -25,11 +23,11 @@ public class EbayHomeScreenTests extends TestBase
     {
         Log.startTestCase("Search Keyword In SearchBox of ebay");
 
-        homePage.enterTextInSearchBox("iPhone");
+        homePage.enterTextInSearchBox(getValueFromTestData("SearchText"));
 
         homePage.clickSearchButton();
 
-        Assert.assertTrue("iPhone".equals(homePage.getSearchedText()),"Searched text not matching");
+        Assert.assertTrue(getValueFromTestData("SearchText").equals(homePage.getSearchedText()),"Searched text not matching");
 
         Log.endTestCase("Search Keyword In SearchBox of ebay");
     }
