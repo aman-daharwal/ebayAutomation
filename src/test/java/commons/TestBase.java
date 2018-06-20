@@ -1,13 +1,15 @@
 package commons;
 
 
-import logger.Log;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
+import services.logger.Log;
+import services.screenshot.Screenshot;
 
 import java.io.*;
 import java.util.Properties;
@@ -25,8 +27,6 @@ public class TestBase {
         DOMConfigurator.configure("src\\test\\resources\\logger.xml");
 
         initialiazeBrowser(browser, getValueFromTestData(browser+"Path")); /// Initiating Browser drivers
-
-        driver.manage().window().maximize();
 
         Log.info("Hitting URL :"+getValueFromTestData("baseUrl"));
         driver.get(getValueFromTestData("baseUrl"));
@@ -71,7 +71,9 @@ public class TestBase {
             System.setProperty("webdriver.chrome.driver", ProjectData.projectPath + driverPath);
             driver = new ChromeDriver();
         }
+        driver.manage().window().maximize();
         Log.info("Launching "+browser+" browser");
+        Screenshot.TakeScreenshot(browser+" browser launched");
     }
 
     @AfterTest
@@ -79,5 +81,17 @@ public class TestBase {
         Log.info("Killing driver and closing browser");
         if (driver != null)
             driver.quit();
+    }
+
+    @AfterMethod
+    public void tracksFailedCases(ITestResult result) throws IOException {
+
+        if (result.getStatus() == ITestResult.SUCCESS) {
+            Log.info("Test case passed");
+        }
+        if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
+            Screenshot.TakeScreenshot("Test Failed");
+            Log.info("Test case failed");
+        }
     }
 }
