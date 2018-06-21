@@ -1,6 +1,7 @@
 package services.screenshot;
 
 import commons.ProjectData;
+import extensions.TimeFormattor;
 import services.logger.Log;
 
 import javax.imageio.ImageIO;
@@ -8,11 +9,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.util.Date;
 
 public class Screenshot {
+
+    private static File newFolder = new File(ProjectData.screenshotFolderPath);
+
+    private static boolean once = true;
 
     public static void TakeScreenshot(String snapShotName)
     {
@@ -32,9 +34,12 @@ public class Screenshot {
             Robot robot = new Robot();
             BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
 
-            String currentTime = new SimpleDateFormat("mm-HH-ss").format(new Date());
+            if(once) {
+                NewFolderForScreenshots();
+                once = false;
+            }
 
-            ImageIO.write(screenShot, "png", new File(ProjectData.screenshotFolderPath + "\\"+currentTime+"-"+snapShotName+".png"));
+            ImageIO.write(screenShot, "png", new File(newFolder + "\\"+TimeFormattor.getCurrentTime()+"-"+snapShotName+".png"));
         }
         catch (AWTException awtExp)
         {
@@ -48,5 +53,12 @@ public class Screenshot {
         {
             Log.error("Unable to capture screenshot with exception "+exp.getLocalizedMessage()+"\nStacktrace :"+exp.getStackTrace());
         }
+    }
+
+    private static File NewFolderForScreenshots()
+    {
+        newFolder = new File(ProjectData.screenshotFolderPath + "\\" + TimeFormattor.getCurrentDate() + " " + TimeFormattor.getCurrentTime());
+        newFolder.mkdirs();
+        return newFolder;
     }
 }
