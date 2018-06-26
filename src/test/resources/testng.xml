@@ -1,18 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1" >
 
-    <test name="SearchKeywordInSearchBox" >
+    <test name="EbayHomeScreenTests" >
         <parameter name="browser" value="chrome" />
         <classes>
             <class name = "testcases.EbayHomeScreenTests"/>
         </classes>
     </test>
-    <test name="CalculateTilesInHomePage" >
-        <parameter name="browser" value="chrome" />
-        <classes>
-            <class name = "testcases.EbayHomeScreenTests"/>
-        </classes>
-    </test>
-
-</suite>
+    <test name="EbayCategoriesTests" >
+         <parameter name="browser" value="firefox" />
+         <classes>
+             <class name = "testcases.EbayItemCategoryTests"/>
+         </classes>
+     </test>
+ </suite>
