@@ -25,4 +25,9 @@ public class UIScreenActions {
     {
         element.click();
     }
+
+    public static void mouseHoverOverElement(WebElement element)
+    {
+        action.moveToElement(element).build().perform();
+    }
 }
