@@ -1,6 +1,8 @@
 package screens;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class EbayCategoryPage extends EbayPageCommons{
@@ -12,5 +14,12 @@ public class EbayCategoryPage extends EbayPageCommons{
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    @FindBy(xpath = "//*[@id='mainTitle']")
+    WebElement categoryTitle;
+
+    public String getCategoryTitle() {
+        return categoryTitle.getText();
     }
 }
