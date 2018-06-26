@@ -22,4 +22,12 @@ public class EbayCategoryPage extends EbayPageCommons{
     public String getCategoryTitle() {
         return categoryTitle.getText();
     }
+
+    @FindBy(xpath = "//*[@class='cat-st']")
+    WebElement subCategoryTitle;
+
+    public String getSubCategoryTitle()
+    {
+        return subCategoryTitle.getText();
+    }
 }
