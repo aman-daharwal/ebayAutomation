@@ -6,13 +6,13 @@
     <test name="EbayHomeScreenTests" >
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name = "testcases.EbayHomeScreenTests"/>
+            <class name = "qaselenium.testcases.EbayHomeScreenTests"/>
         </classes>
     </test>
     <test name="EbayCategoriesTests" >
          <parameter name="browser" value="firefox" />
          <classes>
-             <class name = "testcases.EbayItemCategoryTests"/>
+             <class name = "qaselenium.testcases.EbayItemCategoryTests"/>
          </classes>
      </test>
  </suite>

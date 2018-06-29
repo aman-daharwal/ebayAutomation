@@ -1,0 +1,18 @@
+2018-06-21 11:11:09,177 INFO  [Log] Getting Value from Test Data file for Key chromePath 
+2018-06-21 11:11:09,179 INFO  [Log] Browser  Name = chrome 
+2018-06-21 11:11:09,179 INFO  [Log] Setting System properties for chrome driver 
+2018-06-21 11:11:13,437 INFO  [Log] Launching chrome browser 
+2018-06-21 11:11:13,440 INFO  [Log] Taking Screenshot for chrome browser launched 
+2018-06-21 11:11:13,690 INFO  [Log] Getting Value from Test Data file for Key baseUrl 
+2018-06-21 11:11:13,690 INFO  [Log] Hitting URL :https://www.ebay.in/ 
+2018-06-21 11:11:13,690 INFO  [Log] Getting Value from Test Data file for Key baseUrl 
+2018-06-21 11:11:29,822 INFO  [Log] Starting Test case : Search Keyword In SearchBox of ebay 
+2018-06-21 11:11:29,822 INFO  [Log] Getting Value from Test Data file for Key SearchText 
+2018-06-21 11:11:29,822 INFO  [Log] Entering text 'iPhone' inside Search box 
+2018-06-21 11:11:32,592 INFO  [Log] Getting Value from Test Data file for Key SearchText 
+2018-06-21 11:11:32,716 INFO  [Log] Item searched in ebay search box is 'iPhone' 
+2018-06-21 11:11:32,716 INFO  [Log] Taking Screenshot for Item Searched iPhone 
+2018-06-21 11:11:33,088 INFO  [Log] Search Keyword In SearchBox of ebay Test case Finished. 
+2018-06-21 11:11:33,089 INFO  [Log] *************************************************************************************************** 
+2018-06-21 11:11:33,090 INFO  [Log] Test case passed 
+2018-06-21 11:11:33,092 INFO  [Log] Killing driver and closing browser 

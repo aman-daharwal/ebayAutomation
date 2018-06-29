@@ -1,0 +1,61 @@
+package qaselenium.setup;
+
+
+import core.setup.Base;
+import org.apache.log4j.xml.DOMConfigurator;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
+import core.services.logger.Log;
+import core.services.screenshot.Screenshot;
+
+import java.io.*;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+public class TestBase extends Base {
+
+    public static WebDriver driver;
+    public static WebDriverWait wait;
+
+    @Parameters({"browser"})
+    @BeforeTest
+    public void setup(@Optional("chrome") String browser) {
+
+        setLogger();
+
+        initialiazeBrowser(browser, getValueFromTestData(browser+"Path")); /// Initiating Browser drivers
+
+        Log.info("Hitting URL :"+getValueFromTestData("baseUrl"));
+        driver.get(getValueFromTestData("baseUrl"));
+        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().pageLoadTimeout(50000, TimeUnit.MILLISECONDS);
+        wait = new WebDriverWait(driver, 60000);
+    }
+
+    public void initialiazeBrowser(String browser, String driverPath) {
+        Log.info("Browser  Name = "+browser);
+        if (browser.equalsIgnoreCase("firefox")) {
+            Log.info("Setting System properties for firefox driver");
+            System.setProperty("webdriver.gecko.driver", ProjectData.projectPath + driverPath);
+            driver = new FirefoxDriver();
+        } else if (browser.equalsIgnoreCase("chrome")) {
+            Log.info("Setting System properties for chrome driver");
+            System.setProperty("webdriver.chrome.driver", ProjectData.projectPath + driverPath);
+            driver = new ChromeDriver();
+        }
+        driver.manage().window().maximize();
+        Log.info("Launching "+browser+" browser");
+        Screenshot.TakeScreenshot(browser+" browser launched");
+    }
+
+    @AfterTest
+    public void tearDown() {
+        Log.info("Killing driver and closing browser");
+        if (driver != null)
+            driver.quit();
+    }
+}

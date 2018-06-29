@@ -4,13 +4,13 @@
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
 
-    <appender name="fileAppender" class="org.apache.log4j.FileAppender">
+    <appender name="RollingFile" class="org.apache.log4j.RollingFileAppender">
 
-        <param name="Threshold" value="INFO" />
+        <param name="Threshold" value="DEBUG" />
 
         <param name="Append" value="false" />
 
-        <param name="File" value="logfile.log"/>
+        <param name="File" value="/log/logfile.log"/>
 
         <layout class="org.apache.log4j.PatternLayout">
 
@@ -22,9 +22,9 @@
 
     <root>
 
-        <level value="INFO"/>
+        <level value="DEBUG"/>
 
-        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="RollingFile"/>
 
     </root>
 

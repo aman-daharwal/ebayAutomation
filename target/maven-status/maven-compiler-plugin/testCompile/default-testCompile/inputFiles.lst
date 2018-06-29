@@ -1,3 +1,13 @@
-C:\ebayAutomation\src\test\java\commons\ProjectData.java
-C:\ebayAutomation\src\test\java\testcases\SampleTests.java
-C:\ebayAutomation\src\test\java\commons\TestBase.java
+C:\ebayAutomation\src\test\java\qaselenium\testcases\EbayItemCategoryTests.java
+C:\ebayAutomation\src\test\java\qaselenium\setup\ProjectData.java
+C:\ebayAutomation\src\test\java\qaselenium\screens\EbayPageCommons.java
+C:\ebayAutomation\src\test\java\qaselenium\screens\EbayCategoryPage.java
+C:\ebayAutomation\src\test\java\services\logger\Log.java
+C:\ebayAutomation\src\test\java\qaselenium\setup\TestBase.java
+C:\ebayAutomation\src\test\java\qaappium\setup\TestBase.java
+C:\ebayAutomation\src\test\java\qaselenium\testcases\EbayHomeScreenTests.java
+C:\ebayAutomation\src\test\java\qaselenium\screens\EbayHomePage.java
+C:\ebayAutomation\src\test\java\qaselenium\extensions\Requirements.java
+C:\ebayAutomation\src\test\java\services\screenshot\Screenshot.java
+C:\ebayAutomation\src\test\java\qaselenium\extensions\UIScreenActions.java
+C:\ebayAutomation\src\test\java\qaselenium\extensions\TimeFormattor.java
