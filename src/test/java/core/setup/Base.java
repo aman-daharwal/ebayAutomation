@@ -5,8 +5,7 @@ import core.services.screenshot.Screenshot;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import qaselenium.setup.ProjectData;
+import core.projectdata.ProjectData;
 
 import java.io.File;
 import java.io.FileInputStream;

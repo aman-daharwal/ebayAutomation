@@ -1,19 +1,16 @@
 package qaselenium.setup;
 
 
+import core.projectdata.ProjectData;
 import core.setup.Base;
-import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 import core.services.logger.Log;
 import core.services.screenshot.Screenshot;
 
-import java.io.*;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase extends Base {

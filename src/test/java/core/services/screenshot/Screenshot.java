@@ -1,6 +1,6 @@
 package core.services.screenshot;
 
-import qaselenium.setup.ProjectData;
+import core.projectdata.ProjectData;
 import qaselenium.extensions.TimeFormattor;
 import core.services.logger.Log;
 
