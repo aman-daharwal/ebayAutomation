@@ -1,5 +1,6 @@
 package qaappium.setup;
 
+import core.projectdata.ProjectData;
 import core.setup.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -15,6 +16,7 @@ import org.testng.annotations.BeforeTest;
 import core.services.logger.Log;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
@@ -33,7 +35,8 @@ public class TestBase extends Base
         String cmdreturn = "";
         //making object of Runtime
         Runtime run = Runtime.getRuntime();
-        try{
+        try
+        {
             Process pr = run.exec("cmd.exe /c adb devices");
             pr.waitFor();
             //To read the adb devices command's output from cmd
@@ -42,35 +45,47 @@ public class TestBase extends Base
             while ((cmdreturn=cmdout.readLine())!=null) {
                 cmdline.add(cmdreturn);
             }
-            lineIndex=cmdline.get(1);
-            deviceId =lineIndex.substring(lineIndex.indexOf(""));
+            lineIndex = cmdline.get(1);
+            deviceId = lineIndex.substring(lineIndex.indexOf(""));
             deviceId = deviceId.substring(0,deviceId.indexOf("device"));
             Log.info("device Id has found successfully as "+deviceId);
-        }catch(IOException ioException){
-            Log.error(ioException.getMessage());
-        } catch (InterruptedException intExcep) {
-            Log.error(intExcep.getMessage());
+        }
+        catch(IOException ioException){
+            Log.error("Exception in getting UDID of device, make sure device is attached properly \n"+ioException.getMessage());
+        }
+        catch (InterruptedException intExcep) {
+            Log.error("Exception in getting UDID of device, make sure device is attached properly \n"+intExcep.getMessage());
+        }
+        catch (Exception exp)
+        {
+            Log.error("Exception in getting UDID of device, make sure device is attached properly \n"+exp.getMessage());
         }
         return deviceId.trim();
     }
 
     private void setCapabilities(){ //setting all the capabilities for android
+
+        File app = new File(ProjectData.ebayApkFile);
+
+        Log.info("Initializing and setting capabilities");
         //making object of DesiredCapabilities
         capabilities = new DesiredCapabilities();
         //setting capabilities
-        capabilities.setCapability("udid",getDeviceId());
-        capabilities.setCapability("deviceName", "LS-4005");
-        capabilities.setCapability("device", "Android");
+        capabilities.setCapability("udid", getDeviceId());
+        capabilities.setCapability("deviceName", "Nexus 9");
+        capabilities.setCapability("platformVersion", "7.1.1");
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("appPackage","com.example.tanujapatel.myapplication");
-        capabilities.setCapability("appActivity","com.example.tanujapatel.myapplication.LoginActivity");
-        capabilities.setCapability("app","C:/mnaman/FoodZillaAutomation/app-debug.apk");
+        capabilities.setCapability("appPackage","com.ebay.mobile.activities");
+        capabilities.setCapability("appActivity","com.ebay.mobile.activities.MainActivity");
+        capabilities.setCapability("app",app.getAbsolutePath());
         capabilities.setCapability("newCommandTimeOut","40");
         capabilities.setCapability("autoWebviewTimeout","6000");
     }
 
     //To start appium server with the help of cmd using appium command directly
-    private void startAppiumServer(){
+    private void startAppiumServer()
+    {
+        Log.info("Trying to start appium server");
         Runtime runTime = Runtime.getRuntime();
         try{
             runTime.exec(new String[]{"cmd.exe","/c start appium -p 4724"});
@@ -84,7 +99,9 @@ public class TestBase extends Base
     }
 
     //To create a new appium session
-    private void setAndroidDriver(){
+    private void setAndroidDriver()
+    {
+        Log.info("Initializing driver as Android driver");
         try{
             setCapabilities();
             driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:4724/wd/hub"), capabilities);
@@ -97,7 +114,7 @@ public class TestBase extends Base
             Log.error(ioExcep.getMessage());
         }
         catch(InterruptedException interrutedExcep){
-            System.out.println(interrutedExcep.getMessage());
+            Log.error(interrutedExcep.getMessage());
         }
         catch (UnreachableBrowserException unreachableBrowserExcep) {
             Log.error(unreachableBrowserExcep.getMessage());
