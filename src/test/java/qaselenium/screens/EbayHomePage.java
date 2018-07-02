@@ -67,7 +67,7 @@ public class EbayHomePage extends EbayPageCommons {
 
     public int getTileItems(String tileName)
     {
-        WebElement numberOfItems = driver.findElement(By.xpath("//*[@class='description-left']//a[text()='Tech It Easy']//following::div/*[@class='"+tileName+"']/ul/li[1]"));
+        WebElement numberOfItems = driver.findElement(By.xpath("//*[@class='description-left']//a[text()='"+tileName+"']//following::div/*[@class='big-hero-info']/ul/li[1]"));
         String[] num = numberOfItems.getText().split("\\s+");
         return Integer.valueOf(num[0]);
     }
