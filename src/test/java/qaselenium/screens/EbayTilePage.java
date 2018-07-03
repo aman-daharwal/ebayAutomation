@@ -1,6 +1,8 @@
 package qaselenium.screens;
 
 import core.services.logger.Log;
+import core.services.screenshot.Screenshot;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,6 +27,7 @@ public class EbayTilePage extends EbayPageCommons {
     public String getTilePageTitle()
     {
         Log.info("Page title is : "+pageTitle.getText());
+        Screenshot.TakeScreenshot("Page Title");
         return pageTitle.getText();
     }
 
