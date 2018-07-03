@@ -75,7 +75,7 @@ public class TestBase extends Base
         capabilities.setCapability("deviceName", "Nexus 9");
         capabilities.setCapability("platformVersion", "7.1.1");
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("appPackage","com.ebay.mobile.activities");
+        capabilities.setCapability("appPackage","com.ebay.mobile");
         capabilities.setCapability("appActivity","com.ebay.mobile.activities.MainActivity");
         capabilities.setCapability("app",app.getAbsolutePath());
         capabilities.setCapability("newCommandTimeOut","40");
