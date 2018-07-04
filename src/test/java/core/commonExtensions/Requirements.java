@@ -1,4 +1,4 @@
-package qaselenium.extensions;
+package core.commonExtensions;
 
 import core.services.logger.Log;
 

@@ -1,4 +1,4 @@
-package qaselenium.extensions;
+package core.commonExtensions;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
