@@ -1,7 +1,7 @@
 package core.services.screenshot;
 
 import core.projectdata.ProjectData;
-import qaselenium.extensions.TimeFormattor;
+import core.commonExtensions.TimeFormattor;
 import core.services.logger.Log;
 
 import javax.imageio.ImageIO;

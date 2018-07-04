@@ -1,6 +1,6 @@
 package qaselenium.screens;
 
-import qaselenium.extensions.Requirements;
+import core.commonExtensions.Requirements;
 import qaselenium.extensions.UIScreenActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
