@@ -9,12 +9,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import qaappium.mobileEnums.HomePills;
 
-public class EbayHomePage
+public class EbayHomePage extends EbayMobilePageCommons
 {
     AppiumDriver driver;
 
     public EbayHomePage(AppiumDriver driver)
     {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
@@ -40,9 +41,10 @@ public class EbayHomePage
         globalSearchBox.sendKeys(text);
     }
 
-    public void selectHomePill(HomePills pills)
+    public EbayHomePage selectHomePill(HomePills pills)
     {
         Log.info("Clicking on Home pill "+pills.getValue());
         driver.findElement(By.xpath("//*[@text='"+pills.getValue()+"']")).click();
+        return this;
     }
 }
