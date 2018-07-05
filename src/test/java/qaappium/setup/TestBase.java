@@ -130,7 +130,7 @@ public class TestBase extends Base
         startAppiumServer();//starts appium server
         setAndroidDriver();//starts appium driver session
 
-        Requirements.waitInSeconds(5); // as page takes few seconds to load after launch
+        Requirements.waitInSeconds(8); // as page takes few seconds to load after launch
     }
 
     //To make expire appium session and close the application
