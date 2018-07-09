@@ -143,15 +143,18 @@ public class TestBase extends Base
         Runtime runTime = Runtime.getRuntime();
         try {
             Log.info("Killing Appium server");
-            Scanner s = new Scanner(runTime.exec(new String[]{"cmd.exe", "/c taskkill /F /IM node.exe"}).getInputStream()).useDelimiter("\\A");
-            String val = s.hasNext() ? s.next() : "";
+            Scanner outputScanner = new Scanner(runTime.exec(new String[]{"cmd.exe", "/c taskkill /F /IM node.exe"}).getInputStream()).useDelimiter("\\A");
+            String outputResponse = outputScanner.hasNext() ? outputScanner.next() : "";
 
-            Log.info("Server Killing Response : "+val);
-            if(val.contains("SUCCESS"))
+            if(outputResponse == null || outputResponse == "")
+                Log.error("Output Response is null");
+
+            Log.info("Server Killing Response : "+outputResponse);
+            if(outputResponse.contains("SUCCESS"))
             {
                 Log.info("Appium Server Killed successfully");
             }
-            else if(val.contains("FAILURE") || val.contains("ERROR"))
+            else if(outputResponse.contains("FAILURE") || outputResponse.contains("ERROR"))
             {
                 Log.error("Error/Failure killing Appium server with response "+val);
             }
