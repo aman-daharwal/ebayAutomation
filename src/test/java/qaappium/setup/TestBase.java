@@ -156,7 +156,7 @@ public class TestBase extends Base
             }
             else if(outputResponse.contains("FAILURE") || outputResponse.contains("ERROR"))
             {
-                Log.error("Error/Failure killing Appium server with response "+val);
+                Log.error("Error/Failure killing Appium server with response "+outputResponse);
             }
         } catch (IOException e) {
             e.printStackTrace();
