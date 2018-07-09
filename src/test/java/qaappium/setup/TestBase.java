@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase extends Base
@@ -135,9 +136,27 @@ public class TestBase extends Base
 
     //To make expire appium session and close the application
     @AfterTest
-    public void tearDown()
-    {
+    public void tearDown() {
         Log.info("Killing driver and closing application");
         driver.quit();
+
+        Runtime runTime = Runtime.getRuntime();
+        try {
+            Log.info("Killing Appium server");
+            Scanner s = new Scanner(runTime.exec(new String[]{"cmd.exe", "/c taskkill /F /IM node.exe"}).getInputStream()).useDelimiter("\\A");
+            String val = s.hasNext() ? s.next() : "";
+
+            Log.info("Server Killing Response : "+val);
+            if(val.contains("SUCCESS"))
+            {
+                Log.info("Appium Server Killed successfully");
+            }
+            else if(val.contains("FAILURE") || val.contains("ERROR"))
+            {
+                Log.error("Error/Failure killing Appium server with response "+val);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
