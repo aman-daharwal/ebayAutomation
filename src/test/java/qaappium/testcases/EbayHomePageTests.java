@@ -2,6 +2,7 @@ package qaappium.testcases;
 
 import core.services.logger.Log;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import qaappium.mobileEnums.EbaySideBarItems;
@@ -9,19 +10,20 @@ import qaappium.mobileEnums.HomePills;
 import qaappium.mobilescreens.EbayHomePage;
 import qaappium.setup.TestBase;
 
-public class SampleTests extends TestBase {
+public class EbayHomePageTests extends TestBase {
 
     EbayHomePage ebayHomePage;
 
-    @BeforeTest
+    @BeforeMethod
     public void initializeScreens()
     {
         ebayHomePage = new EbayHomePage(driver);
     }
 
-    @Test
-    public void sample1() throws InterruptedException {
-        Log.startTestCase("Sample test");
+    @Test(description = "Select Categories from home pills and side bar")
+    public void testCategoriesSection()
+    {
+        Log.startTestCase("Select Categories from home pills and side bar");
 
         ebayHomePage.selectHomePill(HomePills.Categories);
 
@@ -34,5 +36,7 @@ public class SampleTests extends TestBase {
 
         Assert.assertEquals(ebayHomePage.getPageTitle(),EbaySideBarItems.Categories.getValue(),"Page Title "+ebayHomePage.getPageTitle()
                 +" does not match with "+EbaySideBarItems.Categories.getValue());
+
+        Log.endTestCase("Select Categories from home pills and side bar");
     }
 }
