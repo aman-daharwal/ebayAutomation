@@ -19,6 +19,6 @@ public class EbaySideBar{
     public void selectOption(EbaySideBarItems item)
     {
         Log.info("Clicking "+item.getValue());
-        driver.findElement(By.xpath("//*[text(),'"+item.getValue()+"']"));
+        driver.findElement(By.xpath("//*[@text='"+item.getValue()+"']")).click();
     }
 }
