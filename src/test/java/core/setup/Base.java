@@ -6,6 +6,8 @@ import org.apache.log4j.xml.DOMConfigurator;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import core.projectdata.ProjectData;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +17,9 @@ import java.util.Properties;
 
 public class Base {
 
+    protected Runtime runtime = Runtime.getRuntime();
+
+    @BeforeSuite
     protected void setLogger()
     {
         DOMConfigurator.configure("src\\test\\resources\\logger.xml");
@@ -46,7 +51,7 @@ public class Base {
     }
 
     @AfterMethod
-    public void tracksFailedCases(ITestResult result) throws IOException {
+    protected void tracksFailedCases(ITestResult result) throws IOException {
 
         if (result.getStatus() == ITestResult.SUCCESS) {
             Log.info("Test case passed");
@@ -55,5 +60,24 @@ public class Base {
             Screenshot.TakeScreenshot("Test Failed");
             Log.info("Test case failed");
         }
+    }
+
+    @AfterSuite
+    protected void releaseMemory()
+    {
+        long freeMemory = runtime.freeMemory();
+        long totalMemory = runtime.totalMemory();
+
+        Log.warn("Memory in Use : " +(totalMemory - freeMemory));
+        Log.warn("Free memory available : "+freeMemory);
+
+        Log.fatal("Running Garbage collector to release memory");
+        // run the garbage collector, then check freeMemory
+        runtime.gc();
+
+        freeMemory = runtime.freeMemory();
+        totalMemory = runtime.totalMemory();
+        Log.warn("Memory in Use after running garbage collector : "+(totalMemory - freeMemory));
+        Log.warn("Free memory after running garbage collector : "+freeMemory);
     }
 }
