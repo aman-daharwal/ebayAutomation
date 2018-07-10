@@ -15,7 +15,7 @@
              <class name = "qaselenium.testcases.EbayItemCategoryTests"/>
          </classes>
      </test>
-    <test name="EbayCategoriesTests" >
+    <test name="EbayItemsTests" >
         <parameter name="browser" value="firefox" />
         <classes>
             <class name = "qaselenium.testcases.EbayItemsTests"/>
