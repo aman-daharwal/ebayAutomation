@@ -10,10 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import core.services.logger.Log;
 
 import java.io.BufferedReader;
@@ -28,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase extends Base
 {
-    DesiredCapabilities capabilities;
+    protected DesiredCapabilities capabilities;
     protected AppiumDriver driver;
 
     private String getDeviceId(){ //To get the device Id which is unique for all
@@ -88,9 +85,9 @@ public class TestBase extends Base
     private void startAppiumServer()
     {
         Log.info("Trying to start appium server");
-        Runtime runTime = Runtime.getRuntime();
+       // Runtime runTime = Runtime.getRuntime();
         try{
-            runTime.exec(new String[]{"cmd.exe","/c start appium -p 4724"});
+            runtime.exec(new String[]{"cmd.exe","/c start appium -p 4724"});
             Thread.sleep(20000);
             Log.info("appium server started successfully");
         }catch(IOException ioException){
@@ -124,26 +121,34 @@ public class TestBase extends Base
     }
 
     //To start the appium server and session before any test
-    @BeforeTest
+    @BeforeSuite
     public void setup(){
-        setLogger();
 
         startAppiumServer();//starts appium server
+    }
+
+    @BeforeMethod
+    public void launchApplication()
+    {
+        Log.info("Launching Application on Android device");
         setAndroidDriver();//starts appium driver session
 
         Requirements.waitInSeconds(8); // as page takes few seconds to load after launch
     }
 
     //To make expire appium session and close the application
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         Log.info("Killing driver and closing application");
         driver.quit();
+    }
 
-        Runtime runTime = Runtime.getRuntime();
+    @AfterSuite
+    public void killServer()
+    {
         try {
             Log.info("Killing Appium server");
-            Scanner outputScanner = new Scanner(runTime.exec(new String[]{"cmd.exe", "/c taskkill /F /IM node.exe"}).getInputStream()).useDelimiter("\\A");
+            Scanner outputScanner = new Scanner(runtime.exec(new String[]{"cmd.exe", "/c taskkill /F /IM node.exe"}).getInputStream()).useDelimiter("\\A");
             String outputResponse = outputScanner.hasNext() ? outputScanner.next() : "";
 
             if(outputResponse == null || outputResponse == "")
