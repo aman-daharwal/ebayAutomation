@@ -22,8 +22,6 @@ public class TestBase extends Base {
     @BeforeTest
     public void setup(@Optional("chrome") String browser) {
 
-        setLogger();
-
         initialiazeBrowser(browser, getValueFromTestData(browser+"Path")); /// Initiating Browser drivers
 
         Log.info("Hitting URL :"+getValueFromTestData("baseUrl"));
