@@ -1,6 +1,7 @@
 package qaselenium.screens;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -93,5 +94,29 @@ public class EbayPageCommons {
         }
         Log.error(category+" is not available inside Shop by Category section.");
         return 0;
+    }
+
+    @FindBy(xpath = "//*[@id='gh-ug']/a")
+    WebElement signInButton;
+
+    public void eBaySignIn()
+    {
+        Log.info("Clicking home page signing button");
+        signInButton.click();
+    }
+
+    @FindBy(xpath = "//*[@id='gh-ug']/b[2]")
+    WebElement accountArrow;
+
+    @FindBy(xpath = "//*[@id='gh-uo']/a")
+    WebElement signOutButton;
+
+    public void eBaySignOut()
+    {
+        Log.info("Signing out from ebay");
+        accountArrow.click();
+
+        signOutButton.click();
+        Screenshot.TakeScreenshot("Signed Out");
     }
 }
