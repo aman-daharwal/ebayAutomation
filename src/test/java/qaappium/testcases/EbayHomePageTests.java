@@ -4,9 +4,11 @@ import core.services.logger.Log;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import qaappium.mobileEnums.EbaySideBarItems;
 import qaappium.mobileEnums.HomePills;
+import qaappium.mobilescreens.EbayCategoriesPage;
 import qaappium.mobilescreens.EbayHomePage;
 import qaappium.setup.TestBase;
 
@@ -38,5 +40,16 @@ public class EbayHomePageTests extends TestBase {
                 +" does not match with "+EbaySideBarItems.Categories.getValue());
 
         Log.endTestCase("Select Categories from home pills and side bar");
+    }
+
+    @Ignore //// Test is incomplete
+    @Test(description = "Test to calculate number of tiles in Category Page")
+    public void calculateTilesInCategoryPage()
+    {
+        EbayCategoriesPage ebayCategoriesPage = new EbayCategoriesPage(driver);
+
+        ebayHomePage.selectHomePill(HomePills.Categories);
+
+        ebayCategoriesPage.getNumberOfTiles();
     }
 }
