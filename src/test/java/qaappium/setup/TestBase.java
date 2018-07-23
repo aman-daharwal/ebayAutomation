@@ -4,6 +4,7 @@ import core.commonExtensions.Requirements;
 import core.projectdata.ProjectData;
 import core.setup.Base;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebElement;
@@ -103,7 +104,7 @@ public class TestBase extends Base
         Log.info("Initializing driver as Android driver");
         try{
             setCapabilities();
-            driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:4724/wd/hub"), capabilities);
+            driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4724/wd/hub"), capabilities);
             Thread.sleep(1000);
             // driver.resetApp();//Clear cache and app data
             driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
