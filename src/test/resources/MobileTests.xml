@@ -7,5 +7,10 @@
         <classes>
             <class name = "qaappium.testcases.EbayHomePageTests"/>
         </classes>
-    </test>
+    </test><test name="EbayLoginTests">
+    <classes>
+        <class name = "qaappium.testcases.EbayLoginTests"/>
+    </classes>
+</test>
+
 </suite>
