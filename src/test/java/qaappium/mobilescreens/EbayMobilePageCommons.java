@@ -2,6 +2,7 @@ package qaappium.mobilescreens;
 
 import core.services.logger.Log;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,9 @@ public class EbayMobilePageCommons extends EbaySideBar{
 
     @FindBy(id = "com.ebay.mobile:id/home")
     WebElement hamburgerIcon;
+    //// using WebElement instead of MobileElement because of below issues
+    //// https://github.com/appium/java-client/issues/770
+    ////https://github.com/appium/java-client/issues/919
 
     @FindBy(id = "com.ebay.mobile:id/title")
     WebElement pageTitle;
