@@ -39,17 +39,15 @@ public class EbaySignInPage
         passwordTextbox.sendKeys(password);
     }
 
-    public void waitForSignPageToLoad()
+    public String getSignInPageTitle()
     {
         Log.info("Waiting for page to load...");
-        Requirements.waitInSeconds(4);
-
-        if(signInPageTitle.isDisplayed())
-            Assert.assertEquals(signInPageTitle.getText().trim(),"Sign in", "" +
+        Assert.assertEquals(signInPageTitle.getText().trim(),"Sign in", "" +
                     "Sign In page title mismatch");
+        return signInPageTitle.getText();
     }
 
-    @FindBy(xpath = "//*[@text='SIGN IN'")
+    @FindBy(xpath = "//*[@text='SIGN IN']")
     WebElement signInButton;
 
     public void clickSignInButton()
