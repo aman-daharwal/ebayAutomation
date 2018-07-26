@@ -1,6 +1,8 @@
 package qaappium.testcases;
 
+import core.commonExtensions.Requirements;
 import core.services.logger.Log;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qaappium.mobileEnums.EbaySideBarItems;
@@ -31,14 +33,23 @@ public class EbayLoginTests extends TestBase
 
         ebayHomePage.selectOption(EbaySideBarItems.SignIn);
 
-        ebaySignInPage.waitForSignPageToLoad();
+        Requirements.waitForScreenToLoad(driver,ebaySignInPage.getSignInPageTitle(),6);
 
         ebaySignInPage.enterUsername(getValueFromTestData("Username"));
 
         ebaySignInPage.enterPassword(getValueFromTestData("Password"));
 
+        ebaySignInPage.clickSignInButton();
+
+        Requirements.waitInSeconds(5);
+
+        ebayHomePage.clickHamburgerIcon();
+
+        Assert.assertTrue(ebayHomePage.getSignedUser().contains(getValueFromTestData("User")),"Signed User" +
+                " "+ebayHomePage.getSignedUser()+" doesn't match with User "+getValueFromTestData("User"));
+
+        ebayHomePage.userSignOut();
+
         Log.endTestCase("Test to login into eBay app");
     }
-
-
 }
