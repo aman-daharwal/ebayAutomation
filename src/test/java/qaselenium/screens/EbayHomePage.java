@@ -71,4 +71,10 @@ public class EbayHomePage extends EbayPageCommons {
         String[] num = numberOfItems.getText().split("\\s+");
         return Integer.valueOf(num[0]);
     }
+
+    public void selectFromSearchedItem(String itemText)
+    {
+        Log.info("Selecting item with text value "+itemText);
+        driver.findElement(By.xpath("//*[contains(@title,'"+itemText+"')]")).click();
+    }
 }
