@@ -33,14 +33,21 @@ public class TestBase extends Base {
 
     public void initialiazeBrowser(String browser, String driverPath) {
         Log.info("Browser  Name = "+browser);
-        if (browser.equalsIgnoreCase("firefox")) {
-            Log.info("Setting System properties for firefox driver");
-            System.setProperty("webdriver.gecko.driver", ProjectData.projectPath + driverPath);
-            driver = new FirefoxDriver();
-        } else if (browser.equalsIgnoreCase("chrome")) {
-            Log.info("Setting System properties for chrome driver");
-            System.setProperty("webdriver.chrome.driver", ProjectData.projectPath + driverPath);
-            driver = new ChromeDriver();
+
+        switch (browser.toLowerCase())
+        {
+            case "firefox":
+                Log.info("Setting System properties for firefox driver");
+                System.setProperty("webdriver.gecko.driver", ProjectData.projectPath + driverPath);
+                driver = new FirefoxDriver();
+                break;
+            case "chrome":
+                Log.info("Setting System properties for chrome driver");
+                System.setProperty("webdriver.chrome.driver", ProjectData.projectPath + driverPath);
+                driver = new ChromeDriver();
+                break;
+            default:
+                Log.info("Browser name "+browser+" incorrect, please check the browser name");
         }
         driver.manage().window().maximize();
         Log.info("Launching "+browser+" browser");
